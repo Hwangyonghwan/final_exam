@@ -65,7 +65,23 @@ public class MyBaseAdapter extends BaseAdapter implements AdapterView.OnItemClic
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // need something here
+    public View getView(int position, View convertView, ViewGroup parent){
+        TextView textView = null;
+
+        if(convertView == null){
+            convertView = mLayoutInflater.inflate(R.layout.list_view_item_layout, null);
+            textView = (TextView)convertView.findViewById(R.id.text);
+            convertView.setTag(textView);
+        }
+        else
+        {
+            textView = (TextView)convertView.getTag();
+        }
+
+
+
+        return convertView;
     }
+
+
 }

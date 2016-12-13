@@ -11,6 +11,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     MyBaseAdapter adapter;
     ListView listview;
+    String name;
+    int age;
+    int salary;
+    ArrayList<Employee> emp_list = new ArrayList<Employee>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,28 +32,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         EditText edit_name = (EditText) findViewById(R.id.edit_name);
         EditText edit_age = (EditText) findViewById(R.id.edit_age);
         EditText edit_salary = (EditText) findViewById(R.id.edit_salary);
-
-        Employee employee;
+        name = edit_name.getText().toString();
+        age = Integer.parseInt(edit_age.getText().toString());
+        salary = Integer.parseInt(edit_salary.getText().toString());
+        Employee employee = new Employee(name, age, salary);
 
         switch (v.getId()){
             case R.id.btn_inc:
-                // need something here
+                employee.increase();
+                edit_salary.setText(employee.getSalary());
                 break;
 
             case R.id.btn_dec:
-                // need something here
+                employee.decrease();
+                edit_salary.setText(employee.getSalary());
                 break;
 
             case R.id.btn_store:
-                // need something here
+                emp_list.add(employee);
                 break;
 
             case R.id.btn_modify:
-                // need something here
+                emp_list.remove(employee);
                 break;
 
             case R.id.btn_delete:
-                // need something here
+                emp_list.remove(employee);
                 break;
         }
     }
@@ -59,3 +67,6 @@ interface Payment {
     void increase();
     void decrease();
 }
+
+
+
